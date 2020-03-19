@@ -18,7 +18,7 @@ $ npm start
 # Start application
 3. Execute this command in the **app** folder of the project to start the angular fronted
 ```sh
-$ npm start
+$ ng serve
 ```
 # Screenshot of markdownEditor
 ![Screenshot](https://github.com/ngahane/markdownEditor/blob/master/screenshot.png "markdownEditor screenshot")
