@@ -10,13 +10,13 @@
 $ git clone https://github.com/ngahane/markdownEditor.git
 ```
 
-2. In the **app** folder of the project, execute this command
+2. In the folder of the project, execute this command
 ```sh
 $ npm start
 ```
 
 # Start application
-3. Execute this command in the **app** folder of the project to start the angular fronted
+3. Execute this command
 ```sh
 $ ng serve
 ```
