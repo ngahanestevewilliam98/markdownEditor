@@ -1,50 +1,40 @@
-import { Component } from '@angular/core';
-import * as toastDisplay from 'toast-display';
-import axios from 'axios';
-import { Loader } from './../../helpers/loader';
-import { Server } from './../../helpers/server';
+import { Component, OnInit } from '@angular/core';
+import * as MarkdownIt from 'markdown-it';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  redirectUrl: string;
-  uniqueUrl: string;
+  inputField: string;
 
   constructor() { }
+
+  ngOnInit() {
+    const header = document.querySelector('.header') as HTMLDivElement;
+    const internally = document.querySelector('.internally') as HTMLDivElement;
+    let kd = window.innerHeight - header.offsetHeight;
+    internally.style.height = `${kd - 50}px`;
+    window.onresize = () => {
+      kd = window.innerHeight - header.offsetHeight;
+      internally.style.height = `${kd - 50}px`;
+    };
+  }
 
   empty(e: string): boolean {
     if (e === undefined || e.length === 0) { return true; } else { return false; }
   }
 
-  async saveLinks() {
-    if (this.empty(this.redirectUrl)) {
-      toastDisplay.show({ message: 'Error, please fill in all the links.', backgroundColor: 'red' });
-    } else {
-      Loader.show();
-      try {
-        const route = `${Server.baseUrl()}/url/add`;
-        const params = {
-          redirectUrl: this.redirectUrl
-        };
-        const request = await axios.post(route, params);
-        this.uniqueUrl = `${Server.baseUrl()}/url/${request.data.unique}`;
-        Loader.dismiss();
-        toastDisplay.show({ message: 'Successful link building' });
-      } catch (error) {
-        Loader.dismiss();
-        if (`${error}`.includes('404')) {
-          toastDisplay.show({ message: 'Error, incomplete parameters', backgroundColor: 'red' });
-        } else if (`${error}`.includes('0')) {
-          toastDisplay.show({ message: 'Error, check your internet connection', backgroundColor: 'red' });
-        } else {
-          toastDisplay.show({ message: 'Error during request', backgroundColor: 'red' });
-        }
-      }
+  generateHTML(val: string): void {
+    let mk = '';
+    if (!this.empty(this.inputField)) {
+      mk = new MarkdownIt().render(val);
+      mk = mk.split('<pre>').join('<pre style="background: #eee; padding: 5px;">');
+      console.log(mk);
     }
+    document.querySelector('#resultField').innerHTML = `${mk}`;
   }
 
 }

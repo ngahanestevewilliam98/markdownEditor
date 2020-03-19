@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 
-**markdownEditor** is a open source markdown editor designed with the MEAN stack Angular. This project can be hosted on a local or online server.
+**markdownEditor** is a open source markdown editor designed with Angular. This project can be hosted on a local or online server.
 
 # Usage 
 1. Clone the repository with 
