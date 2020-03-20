@@ -20,5 +20,7 @@ $ npm start
 ```sh
 $ ng serve
 ```
+4. Open browser to url **http://127.0.0.1:4200**
+
 # Screenshot of markdownEditor
 ![Screenshot](https://github.com/ngahane/markdownEditor/blob/master/screenshot.png "markdownEditor screenshot")
